@@ -1,0 +1,9 @@
+%p#notice = notice
+%p
+  %b Body:
+  = @neuron.body
+%p
+  %b Url:
+  = @neuron.url
+= link_to 'Edit', edit_neuron_path(@neuron) |
+= link_to 'Back', neurons_path

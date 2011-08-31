@@ -1,0 +1,17 @@
+= form_for(@neuron) do |f| 
+ if @neuron.errors.any? 
+#error_explanation
+  %h2 = pluralize(@neuron.errors.count, "error")  prohibited this neuron from being saved:
+  %ul
+     @neuron.errors.full_messages.each do |msg| 
+    %li = msg 
+.field
+  = f.label :body 
+  %br/
+  = f.text_area :body 
+.field
+  = f.label :url 
+  %br/
+  = f.text_field :url 
+.actions
+  = f.submit 
