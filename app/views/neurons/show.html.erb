@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Body:</b>
+  <%= @neuron.body %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @neuron.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_neuron_path(@neuron) %> |
+<%= link_to 'Back', neurons_path %>

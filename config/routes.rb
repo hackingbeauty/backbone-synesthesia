@@ -1,4 +1,6 @@
 BackboneSynesthesia::Application.routes.draw do
+  resources :neurons
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
