@@ -7,11 +7,11 @@
     %th
     %th
   - @neurons.each do |neuron|
-  %tr
-    %td = neuron.body 
-    %td = neuron.url 
-    %td = link_to 'Show', neuron 
-    %td = link_to 'Edit', edit_neuron_path(neuron) 
-    %td = link_to 'Destroy', neuron, confirm: 'Are you sure?', method: :delete 
+    %tr
+      %td= neuron.body 
+      %td= neuron.url 
+      %td= link_to 'Show', neuron 
+      %td= link_to 'Edit', edit_neuron_path(neuron) 
+      %td= link_to 'Destroy', neuron, confirm: 'Are you sure?', method: :delete 
 
 = link_to 'New Neuron', new_neuron_path 
