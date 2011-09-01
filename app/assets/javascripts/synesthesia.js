@@ -31,9 +31,6 @@
       //this.render();
     },
     render: function(){
-      console.log('inside render');
-      console.log(this.model);
-      // console.log(this.model.toJSON());
       var neuron = this.model.toJSON();
       //Template stuff goes here
       $(this.el).html(ich.neuron_template(neuron));
@@ -44,6 +41,7 @@
   window.AppView = Backbone.View.extend({
     el: $('#neurons_app'),
     events:{
+      'input #neuron_body': 'startTypingNeuron',
       'submit form#new_neuron':'createNeuron'
     },
     initialize: function(){
@@ -56,11 +54,10 @@
     addOne: function(neuron) {
        var view = new NeuronView({model: neuron});
        this.$("#neurons_list").append(view.render().el);
-     },
-
-     addAll: function(){
-       Neurons.each(this.addOne);
-     },
+    },
+    addAll: function(){
+      Neurons.each(this.addOne);
+    },
     newAttributes: function(event){
       var new_neuron_form = $(event.currentTarget).serializeObject();
       return {
@@ -69,6 +66,9 @@
           url: new_neuron_form['neuron[url]']
         }
       }
+    },
+    startTypingNeuron: function(e){
+      $('#neuron_input').html($('#neuron_body').val());
     },
     createNeuron: function(e){
       e.preventDefault();

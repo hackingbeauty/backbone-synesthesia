@@ -1,28 +1,9 @@
 #neurons_app
-
   = render 'form'
-  
-  %h1 Listing neurons via Rails
-  
-  %ul
-    - @neurons.each do |neuron|
-      %li
-        %div= neuron.body 
-        %div= neuron.url 
-        / %div= link_to 'Show', neuron 
-        / %div= link_to 'Edit', edit_neuron_path(neuron) 
-        / %div= link_to 'Destroy', neuron, confirm: 'Are you sure?', method: :delete 
-
-  = link_to 'New Neuron', new_neuron_path 
-  
-  %h1 Listing neurons via Backbone
-  
   %ul#neurons_list
-  
-
-
-%script{:id => 'neuron_template', :type => 'text/html'}
-  %li
-    = "{{body}}"
-    = "{{neuron.url}}"
+    %li#neuron_input
+  %script{:id => 'neuron_template', :type => 'text/html'}
+    %li
+      = "{{body}}"
+      = "{{url}}"
   
