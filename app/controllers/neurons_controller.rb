@@ -3,7 +3,7 @@ class NeuronsController < ApplicationController
   # GET /neurons.json
   def index
     @neurons = Neuron.all
-
+    @neuron = Neuron.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @neurons }
