@@ -1,6 +1,25 @@
+@import 'bourbon';
+
 #neurons_list {
+  font-family:Menlo Regular, sans-serif;
   font-size:105%;
-  color: #00bce7;
+  li {
+    padding:1%;
+    @include border-radius(10px);
+    border: 1px solid #2E2E30;
+    margin-bottom:1%;
+    list-style-type:none;
+    list-style-position:outside;
+  }
+}
+
+#neuron_body {
+  background:white;
+  color: black;
   font-weight:bold;
+  font-family:Menlo Regular, sans-serif;
+  font-size:105%;
   letter-spacing:1px;
+  width:98%;
+  padding:1%;  
 }
