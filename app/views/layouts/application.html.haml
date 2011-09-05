@@ -6,10 +6,12 @@
     = csrf_meta_tags
   %body
     #main
-      .side_column
-        column2
       .main_column
+        column2
+      .side_column
         = yield
+
+        
       = javascript_include_tag "application"
     
 
