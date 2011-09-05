@@ -74,6 +74,7 @@
       e.preventDefault();
       var params = this.newAttributes(e);
       Neurons.create(params);
+      $('#neuron_body').val('');
     }
   });
 
