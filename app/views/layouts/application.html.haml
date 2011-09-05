@@ -7,11 +7,9 @@
   %body
     #main
       .main_column
-        column2
+        = render :partial => "neurons/neurons_list"
       .side_column
         = yield
-
-        
       = javascript_include_tag "application"
     
 

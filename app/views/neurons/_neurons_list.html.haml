@@ -1,0 +1,9 @@
+%ul#neurons_list
+  %li#neuron_input
+  = @neurons.each do |neuron|
+    %li
+      = neuron.body
+%script{:id => 'neuron_template', :type => 'text/html'}
+  %li
+    = "{{body}}"
+    = "{{url}}"
