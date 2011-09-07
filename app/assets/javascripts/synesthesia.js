@@ -45,6 +45,7 @@
       'submit form#new_neuron':'createNeuron'
     },
     initialize: function(){
+      $('#neuron_input').hide();
       _.bindAll(this, 'addOne', 'addAll');
       Neurons.bind('add', this.addOne);
       Neurons.bind('refresh', this.addAll);
@@ -68,14 +69,17 @@
       }
     },
     startTypingNeuron: function(e){
+      $('#neuron_input').show();
       $('#neuron_input').html($('#neuron_body').val());
     },
     createNeuron: function(e){
       //if (!text || e.keyCode != 13) return;
       e.preventDefault();
       var params = this.newAttributes(e);
+      console.log(params);
       var neuron = Neurons.create(params);
-      $('#neuron_input').after("<li>"+neuron.get('body')+"</li>");
+      $('#neurons_list li:first-child').after("<li>"+params.neuron.body+"</li>");
+      $('#neuron_input').hide();
       $('#neuron_body').val('');
     }
   });
