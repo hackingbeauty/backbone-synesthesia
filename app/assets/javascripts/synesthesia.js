@@ -52,8 +52,8 @@
       Neurons.fetch(); //This gets the model from the server
     },
     addOne: function(neuron) {
-       var view = new NeuronView({model: neuron});
-       this.$("#neurons_list").append(view.render().el);
+      var view = new NeuronView({model: neuron});
+      this.$("#neurons_list").prepend(view.render().el);
     },
     addAll: function(){
       Neurons.each(this.addOne);
@@ -71,9 +71,11 @@
       $('#neuron_input').html($('#neuron_body').val());
     },
     createNeuron: function(e){
+      //if (!text || e.keyCode != 13) return;
       e.preventDefault();
       var params = this.newAttributes(e);
-      Neurons.create(params);
+      var neuron = Neurons.create(params);
+      $('#neuron_input').after("<li>"+neuron.get('body')+"</li>");
       $('#neuron_body').val('');
     }
   });

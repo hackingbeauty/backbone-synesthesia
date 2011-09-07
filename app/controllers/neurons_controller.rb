@@ -2,7 +2,7 @@ class NeuronsController < ApplicationController
   # GET /neurons
   # GET /neurons.json
   def index
-    @neurons = Neuron.all
+    @neurons = Neuron.all.reverse
     @neuron = Neuron.new
     respond_to do |format|
       format.html # index.html.erb
