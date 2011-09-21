@@ -11,7 +11,6 @@
 //= require backbone
 //= require json2
 //= require helper
-//= require icanhaz
 //= require synesthesia.js
 
 

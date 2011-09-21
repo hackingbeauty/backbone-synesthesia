@@ -3,7 +3,4 @@
   - @neurons.each do |neuron|
     %li
       = neuron.body
-%script{:id => 'neuron_template', :type => 'text/html'}
-  %li
-    = "{{body}}"
-    = "{{url}}"
+= render :partial => 'templates/neuron_template'
