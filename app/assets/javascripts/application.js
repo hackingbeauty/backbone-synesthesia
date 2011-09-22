@@ -6,11 +6,9 @@
 //
 
 //= require jquery
-//= require jquery_ujs
 //= require underscore
 //= require backbone
 //= require json2
-//= require helper
 //= require synesthesia.js
 
 

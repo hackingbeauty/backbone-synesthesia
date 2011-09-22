@@ -7,9 +7,12 @@
   %body
     #main
       .main_column
-        = render :partial => "neurons/neurons_list"
-      .side_column
         = yield
+      .side_column
       = javascript_include_tag "application"
+      = render :partial => 'templates/neuron_list_template'
+      = render :partial => 'templates/neuron_template'
+    / %script{:type => 'application/javascript'}
+    /   jQuery(function(){window.list.fetch();});
     
 

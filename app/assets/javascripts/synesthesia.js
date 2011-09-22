@@ -4,9 +4,16 @@
     
   });
   
+  window.Neurons = Backbone.Collection.extend({
+    model: Neuron,
+    url: '/neurons'
+  });
+  
+  window.list = new Neurons();
+  
   window.NeuronView = Backbone.View.extend({
     tagName: 'li',
-    className: 'album',
+    className: 'neuron',
     initialize: function(){
       _.bindAll(this,'render');
       this.model.bind('change', this.render);
@@ -18,7 +25,65 @@
       return this;
     }
   });
-
+  
+  window.NeuronListView = NeuronView.extend({
+      
+    });
+    
+    window.ListView = Backbone.View.extend({
+      tagName: 'li',
+      className: 'list',
+      initialize: function(){
+        _.bindAll(this, 'render');
+        this.template = _.template($('#list_template').html());
+        this.collection.bind('reset', this.render);
+      },
+      render: function(){
+        var $albums,
+            collection = this.collection;
+        $(this.el).html(this.template({}))
+        $neurons = this.$('#neurons');
+        collection.each(function(neuron){
+          var view = new NeuronListView({
+            model: neuron,
+            collection: collection
+          });
+          $neurons.append(view.render().el);
+        });
+        return this;
+      }
+    });
+  
+    window.BackboneSynesthesia = Backbone.Router.extend({
+      routes:{
+        '':'home',
+        'blank':'blank'
+      },
+      initialize: function(){
+        console.log('collection is', window.list);
+        var secondList = list.fetch();
+        console.log('secondList', secondList);
+        this.listView = new ListView({
+             collection: window.list
+           });
+      },
+      home: function(){
+            var $container = $('#main');
+            $container.empty();
+            console.log('this.listView is', this.listView);
+            // $container.append(this.listView.render().el)
+            $container.append('blah');
+          },
+      blank: function(){
+        $('#main').empty();
+        $('#main').text('blank');
+      }
+    });
+    
+    $(function(){
+      window.App = new BackboneSynesthesia();
+      Backbone.history.start();
+    });
 
 }(jQuery));
 
