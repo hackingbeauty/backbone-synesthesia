@@ -27,6 +27,17 @@
     }
   });
   
+  window.FormView = Backbone.View.extend({
+    tagName: 'textarea',
+    initialize: function(){
+      _.bindAll(this,'render');
+      this.template = _.template($('#form_template').html());
+    },
+    render: function(){
+      return this;
+    }
+  })
+  
   window.NeuronListView = NeuronView.extend({
       
   });
@@ -68,11 +79,13 @@
       this.listView = new ListView({
         collection: window.list
       });
+      this.formView = new FormView({});
     },
     home: function(){
       var $container = $('#main');
       $container.empty();
-      $container.append(this.listView.render().el)
+      $container.append(this.listView.render().el);
+      $container.append(this.formView.render().el);
     },
     blank: function(){
       $('#main').empty();
