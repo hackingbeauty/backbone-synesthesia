@@ -1,0 +1,33 @@
+<!doctype html>
+<head>
+
+  <title> BackboneSynesthesia</title>
+  
+  <%= stylesheet_link_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "application" %>
+
+   <script type="text/template" id="list_template">
+     <h1>Your Neurons</h1>
+     <ul id="neurons"></ul>
+   </script>
+
+
+   <script type="text/template" id="neuron_template">
+     <span>{{body}}</span>
+       <span>{{url}}</span>
+   </script>
+   
+   <script type='application/javascript'>
+     jQuery(function(){window.list.fetch();});
+   </script>
+
+</head>
+<body>
+ <div id="main">
+
+   </div>
+
+</body>
+</html>
+

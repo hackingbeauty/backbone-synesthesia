@@ -47,11 +47,13 @@
       $(this.el).html(this.template({}))
       $neurons = this.$('#neurons');
       collection.each(function(neuron){
+        console.log('neuron is', neuron);
         var view = new NeuronListView({
           model: neuron,
           collection: collection
         });
-        $neurons.append(this.view.render().el);
+        console.log('view is', view);
+        $neurons.append(view.render().el);
       });
       return this;
     }
