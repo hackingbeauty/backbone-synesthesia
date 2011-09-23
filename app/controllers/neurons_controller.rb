@@ -2,8 +2,19 @@ class NeuronsController < ApplicationController
   # GET /neurons
   # GET /neurons.json
   def index
-    render :json => Neuron.all.reverse
-    # @neurons = Neuron.all.reverse
+    # render :json => Neuron.all.reverse
+    
+    puts "====="
+    # puts File.readlines("public/neurons.json")
+    # puts "====="
+    # render :json => File.readlines("public/neurons.json")
+    
+    # 
+    @neurons = Neuron.all.reverse
+    puts @neurons.to_json
+    render :json => @neurons
+    # 
+    
     # @neuron = Neuron.new
     # respond_to do |format|
     #   format.html # index.html.erb

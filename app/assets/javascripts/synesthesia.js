@@ -1,12 +1,13 @@
 (function($){
   
   window.Neuron = Backbone.Model.extend({
-    
+
   });
   
   window.Neurons = Backbone.Collection.extend({
     model: Neuron,
     url: '/neurons'
+
   });
   
   window.list = new Neurons();
@@ -28,62 +29,59 @@
   
   window.NeuronListView = NeuronView.extend({
       
-    });
+  });
     
-    window.ListView = Backbone.View.extend({
-      tagName: 'li',
-      className: 'list',
-      initialize: function(){
-        _.bindAll(this, 'render');
-        this.template = _.template($('#list_template').html());
-        this.collection.bind('reset', this.render);
-      },
-      render: function(){
-        var $albums,
-            collection = this.collection;
-        $(this.el).html(this.template({}))
-        $neurons = this.$('#neurons');
-        collection.each(function(neuron){
-          var view = new NeuronListView({
-            model: neuron,
-            collection: collection
-          });
-          $neurons.append(view.render().el);
+  window.ListView = Backbone.View.extend({
+    tagName: 'li',
+    className: 'list',
+    initialize: function(){
+      _.bindAll(this, 'render');
+      this.template = _.template($('#list_template').html());
+      //when you call, say neurons.fetch(), this line
+      // will allow the ListView to automatically update itself with updated data
+      this.collection.bind('reset', this.render);
+    },
+    render: function(){
+      var $albums,
+          collection = this.collection;
+      $(this.el).html(this.template({}))
+      $neurons = this.$('#neurons');
+      collection.each(function(neuron){
+        var view = new NeuronListView({
+          model: neuron,
+          collection: collection
         });
-        return this;
-      }
-    });
+        $neurons.append(this.view.render().el);
+      });
+      return this;
+    }
+  });
   
-    window.BackboneSynesthesia = Backbone.Router.extend({
-      routes:{
-        '':'home',
-        'blank':'blank'
-      },
-      initialize: function(){
-        console.log('collection is', window.list);
-        var secondList = list.fetch();
-        console.log('secondList', secondList);
-        this.listView = new ListView({
-             collection: window.list
-           });
-      },
-      home: function(){
-            var $container = $('#main');
-            $container.empty();
-            console.log('this.listView is', this.listView);
-            // $container.append(this.listView.render().el)
-            $container.append('blah');
-          },
-      blank: function(){
-        $('#main').empty();
-        $('#main').text('blank');
-      }
-    });
-    
-    $(function(){
-      window.App = new BackboneSynesthesia();
-      Backbone.history.start();
-    });
+  window.BackboneSynesthesia = Backbone.Router.extend({
+    routes:{
+      '':'home',
+      'blank':'blank'
+    },
+    initialize: function(){
+      this.listView = new ListView({
+        collection: window.list
+      });
+    },
+    home: function(){
+      var $container = $('#main');
+      $container.empty();
+      $container.append(this.listView.render().el)
+    },
+    blank: function(){
+      $('#main').empty();
+      $('#main').text('blank');
+    }
+  });
+  
+  $(function(){
+    window.App = new BackboneSynesthesia();
+    Backbone.history.start({pushState: true});
+  });
 
 }(jQuery));
 

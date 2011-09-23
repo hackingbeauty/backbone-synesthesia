@@ -2,7 +2,7 @@
 %html
   %head
     %title BackboneSynesthesia
-    = stylesheet_link_tag    "application"
+    = stylesheet_link_tag "application"
     = csrf_meta_tags
   %body
     #main
@@ -12,7 +12,7 @@
       = javascript_include_tag "application"
       = render :partial => 'templates/neuron_list_template'
       = render :partial => 'templates/neuron_template'
-    / %script{:type => 'application/javascript'}
-    /   jQuery(function(){window.list.fetch();});
+    %script{:type => 'application/javascript'}
+      jQuery(function(){window.list.fetch();});
     
 
